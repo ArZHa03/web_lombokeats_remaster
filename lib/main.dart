@@ -599,9 +599,10 @@ class _MyHomePageState extends State<_MyHomePage> {
             ),
             SizedBox(height: size.height * 0.01),
             Text(
-                "A scenic, inviting view of Lombok Island showcasing its natural beauty, such as a beach with turquoise water,\nlush greenery, and perhaps a traditional Lombok boat in the foreground. This sets the tone for exploring\nLombok's culture and culinary delights.",
-                style: TextStyle(fontSize: size.height * 0.015, fontWeight: FontWeight.w500),
-                textAlign: TextAlign.center),
+              "A scenic, inviting view of Lombok Island showcasing its natural beauty, such as a beach with turquoise water,\nlush greenery, and perhaps a traditional Lombok boat in the foreground. This sets the tone for exploring\nLombok's culture and culinary delights.",
+              style: TextStyle(fontSize: size.height * 0.015, fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            ),
             SizedBox(height: size.height * 0.01),
             _carousel(),
           ],
@@ -784,7 +785,6 @@ class _MyHomePageState extends State<_MyHomePage> {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.15, vertical: size.height * 0.1),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
               text: TextSpan(
@@ -799,6 +799,13 @@ class _MyHomePageState extends State<_MyHomePage> {
                 ],
               ),
             ),
+            SizedBox(height: size.height * 0.01),
+            Text(
+              "A scenic, inviting view of Lombok Island showcasing its natural beauty, such as a beach with turquoise water,\nlush greenery, and perhaps a traditional Lombok boat in the foreground. This sets the tone for exploring\nLombok's culture and culinary delights.",
+              style: TextStyle(fontSize: size.height * 0.015, fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: size.height * 0.01),
             _carousel(),
           ],
         ),
@@ -809,21 +816,21 @@ class _MyHomePageState extends State<_MyHomePage> {
       return Padding(
         padding: EdgeInsets.symmetric(horizontal: size.width * 0.15, vertical: size.height * 0.1),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             RichText(
               text: TextSpan(
                 text: 'Culinary',
                 style: TextStyle(fontSize: size.height * 0.04, fontWeight: FontWeight.bold, color: _secondaryColor),
-                children: [
-                  TextSpan(text: ' Specials', style: TextStyle(color: Colors.black)),
-                ],
+                children: [TextSpan(text: ' Specials', style: TextStyle(color: Colors.black))],
               ),
             ),
             SizedBox(height: size.height * 0.01),
             Text(
-                'Sample authentic Lombok dishes like Beberuk Terong, Sate Pusut,\nPlecing Kangkung, Ayam Taliwang and Sate Rembiga - each offering a\ntaste of local tradition and cultural heritage.',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+              "A scenic, inviting view of Lombok Island showcasing its natural beauty, such as a beach with turquoise water,\nlush greenery, and perhaps a traditional Lombok boat in the foreground. This sets the tone for exploring\nLombok's culture and culinary delights.",
+              style: TextStyle(fontSize: size.height * 0.015, fontWeight: FontWeight.w500),
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: size.height * 0.01),
             _carousel(),
           ],
         ),
