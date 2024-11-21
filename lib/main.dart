@@ -1389,10 +1389,7 @@ class _MyHomePageState extends State<_MyHomePage> {
             textAlign: TextAlign.center,
           ),
           SizedBox(height: size.height * 0.03),
-          Padding(
-            padding: EdgeInsets.symmetric(horizontal: size.width * 0.1),
-            child: _imageOthers(onlyImage: true, item: 3, ratio: 2.125),
-          ),
+          _imageOthers(onlyImage: true, item: 3),
         ],
       );
     }
