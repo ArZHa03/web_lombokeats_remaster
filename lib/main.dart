@@ -604,7 +604,7 @@ class _MyHomePageState extends State<_MyHomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: size.height * 0.01),
-            _carousel(),
+            _carousel(onlyImage: true),
           ],
         ),
       );
@@ -768,7 +768,7 @@ class _MyHomePageState extends State<_MyHomePage> {
           children: [
             Text('Culinary Stories to Savor',
                 style: TextStyle(fontSize: size.height * 0.04, fontWeight: FontWeight.bold)),
-            _carousel(),
+            _carousel(onlyImage: true),
           ],
         ),
       );
@@ -806,7 +806,7 @@ class _MyHomePageState extends State<_MyHomePage> {
               textAlign: TextAlign.center,
             ),
             SizedBox(height: size.height * 0.01),
-            _carousel(),
+            _carousel(onlyImage: true),
           ],
         ),
       );
@@ -987,18 +987,18 @@ class _MyHomePageState extends State<_MyHomePage> {
 
     Widget wonderfulVillage() {
       return Padding(
-        padding: EdgeInsets.only(bottom: size.height * 0.1),
+        padding: EdgeInsets.symmetric(vertical: size.height * 0.1, horizontal: size.width * 0.15),
         child: Column(
           children: [
-            Padding(
-              padding: EdgeInsets.symmetric(vertical: size.height * 0.045),
-              child: RichText(
-                  text: TextSpan(
-                      text: 'Find Wonderful ',
-                      style: TextStyle(fontSize: size.height * 0.04, fontWeight: FontWeight.bold),
-                      children: [TextSpan(text: 'Village', style: TextStyle(color: _secondaryColor))])),
-            ),
-            _imageOthers(),
+            RichText(
+                text: TextSpan(
+                    text: 'Find Wonderful ',
+                    style: TextStyle(fontSize: size.height * 0.04, fontWeight: FontWeight.bold),
+                    children: [TextSpan(text: 'Village', style: TextStyle(color: _secondaryColor))])),
+            SizedBox(height: size.height * 0.025),
+            _carousel(onlyImage: true),
+            SizedBox(height: size.height * 0.01),
+            _carousel(onlyImage: true),
           ],
         ),
       );
@@ -1105,7 +1105,7 @@ class _MyHomePageState extends State<_MyHomePage> {
     );
   }
 
-  Widget _carousel() {
+  Widget _carousel({bool onlyImage = false}) {
     final CarouselSliderController controller = CarouselSliderController();
     int current = 0;
 
@@ -1122,6 +1122,7 @@ class _MyHomePageState extends State<_MyHomePage> {
       return imgList
           .map((item) => Container(
                 padding: EdgeInsets.all(20),
+                margin: onlyImage ? EdgeInsets.symmetric(horizontal: 5) : null,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(40),
                   color: Colors.white,
@@ -1198,33 +1199,37 @@ class _MyHomePageState extends State<_MyHomePage> {
           CarouselSlider(
             items: imageSliders(),
             options: CarouselOptions(
-                height: size.height * 0.45,
+                height: onlyImage ? size.height * 0.4 : size.height * 0.45,
                 aspectRatio: 2.0,
                 viewportFraction: 0.33,
-                enlargeCenterPage: true,
-                autoPlay: true,
-                onPageChanged: (index, reason) => setState(() => current = index)),
-            carouselController: controller,
+                enlargeCenterPage: onlyImage ? false : true,
+                autoPlay: onlyImage ? false : true,
+                scrollPhysics: onlyImage ? NeverScrollableScrollPhysics() : null,
+                onPageChanged: onlyImage ? null : (index, reason) => setState(() => current = index)),
+            carouselController: onlyImage ? null : controller,
+            disableGesture: onlyImage,
           ),
-          SizedBox(height: size.height * 0.01),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: imgList.asMap().entries.map((entry) {
-              return GestureDetector(
-                onTap: () => controller.animateToPage(entry.key),
-                child: Container(
-                  width: 12.0,
-                  height: 12.0,
-                  margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black)
-                        .withOpacity(current == entry.key ? 0.9 : 0.4),
+          if (!onlyImage) ...[
+            SizedBox(height: size.height * 0.01),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: imgList.asMap().entries.map((entry) {
+                return GestureDetector(
+                  onTap: () => controller.animateToPage(entry.key),
+                  child: Container(
+                    width: 12.0,
+                    height: 12.0,
+                    margin: EdgeInsets.symmetric(vertical: 8.0, horizontal: 4.0),
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: (Theme.of(context).brightness == Brightness.dark ? Colors.white : Colors.black)
+                          .withOpacity(current == entry.key ? 0.9 : 0.4),
+                    ),
                   ),
-                ),
-              );
-            }).toList(),
-          ),
+                );
+              }).toList(),
+            ),
+          ]
         ],
       ),
     );
