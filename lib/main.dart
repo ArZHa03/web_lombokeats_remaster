@@ -264,7 +264,7 @@ class _MyHomePageState extends State<_MyHomePage> {
     }
 
     Widget exploreLombok() {
-      Widget adaDeh(String title) {
+      Widget point(String title) {
         return Column(
           children: [
             SizedBox(height: size.height * 0.01),
@@ -348,10 +348,10 @@ class _MyHomePageState extends State<_MyHomePage> {
                   "A scenic, inviting view of Lombok Island showcasing its\nnatural beauty, such as a beach with turquoise water, lush\ngreenery, and perhaps a traditional Lombok boat in the\nforeground. This sets the tone for exploring Lombok's\nculture and culinary delights.",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
-                adaDeh('Gastronomy'),
-                adaDeh('Restaurant'),
-                adaDeh('Culture'),
-                adaDeh('Reference Village'),
+                point('Gastronomy'),
+                point('Restaurant'),
+                point('Culture'),
+                point('Reference Village'),
               ],
             ),
           ],
@@ -1121,6 +1121,7 @@ class _MyHomePageState extends State<_MyHomePage> {
     List<Widget> imageSliders() {
       return imgList
           .map((item) => Container(
+                alignment: Alignment.center,
                 padding: EdgeInsets.all(20),
                 margin: onlyImage ? EdgeInsets.symmetric(horizontal: 5) : null,
                 decoration: BoxDecoration(
@@ -1129,7 +1130,7 @@ class _MyHomePageState extends State<_MyHomePage> {
                   border: Border.all(color: Color(0xffE9E9E9)),
                 ),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     ClipRRect(
                       borderRadius: BorderRadius.circular(30),
@@ -1144,6 +1145,7 @@ class _MyHomePageState extends State<_MyHomePage> {
                     Text(
                       'A scenic, inviting view of Lombok Island showcasing its natural beauty, such as a beach with turquoise water',
                       style: TextStyle(fontWeight: FontWeight.w500, fontSize: size.height * 0.014),
+                      textAlign: TextAlign.center
                     ),
                     SizedBox(height: size.height * 0.01),
                     GestureDetector(
